@@ -7,26 +7,68 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Simple calculator</title>
     <script>
-        function sum(numeroA, numeroB) {
-            if (typeof (numeroA) !== 'number' && !isNaN(numeroA)) {
-                numeroA = parseInt(numeroA)
+
+        function strToNumber(strNumber) {
+            if (typeof (strNumber) !== 'number' && !isNaN(strNumber)) {
+                strNumber = parseInt(strNumber)
             }
 
-            if (typeof (numeroB) !== 'number' && !isNaN(numeroB)) {
-                numeroB = parseInt(numeroB)
-            }
+            return strNumber;
+        }
+
+        function sum(numeroA, numeroB) {
+            numeroA = strToNumber(numeroA);
+            numeroB = strToNumber(numeroB);
 
             return numeroA + numeroB;
         }
-        
+
+        function subtract(numeroA, numeroB) {
+            numeroA = strToNumber(numeroA);
+            numeroB = strToNumber(numeroB);
+
+            return numeroA - numeroB;
+        }
+
+
+        function divide(numeroA, numeroB) {
+            numeroA = strToNumber(numeroA);
+            numeroB = strToNumber(numeroB);
+
+            return numeroA / numeroB;
+        }
+
+
+        function multiply(numeroA, numeroB) {
+            numeroA = strToNumber(numeroA);
+            numeroB = strToNumber(numeroB);
+
+            return numeroA * numeroB;
+        }
+
         window.onload = function () {
             var pNumero = document.getElementById('primeiroNumero');
             var sNumero = document.getElementById('segundoNumero');
             var sumBtn = document.getElementById('sumButton');
+            var subtractBTn = document.getElementById('subtractButton');
+            var multiplyBTn = document.getElementById('multiplyButton');
+            var divideBTn = document.getElementById('divideButton');
+            var h1Result = document.getElementById('resultado');
 
-            sumBtn.addEventListener('click', function (){
-                alert(sum(pNumero.value, sNumero.value));
-            });
+            function setupListener(element, fn, symbol) {
+                element.addEventListener('click', function () {
+                    var resultado = fn(pNumero.value, sNumero.value)
+                    h1Result.innerHTML = pNumero.value + ' ' + symbol + ' ' + sNumero.value + ' = ' + resultado;
+                });
+            }
+            
+            setupListener(sumBtn, sum, '+');
+
+            setupListener(subtractBTn, subtract, '-');
+
+            setupListener(multiplyBTn, multiply, 'x');
+
+            setupListener(divideBTn, divide, '/');
         };
     </script>
 </head>
@@ -47,9 +89,18 @@
     <div>
         <button id="sumButton">Somar números</button>
     </div>
-    <div id="resultado">
-
+    <div>
+        <button id="subtractButton">Subtrair números</button>
     </div>
+    <div>
+        <button id="multiplyButton">Multiplicar números</button>
+    </div>
+    <div>
+        <button id="divideButton">Dividir números</button>
+    </div>
+    <h1 id="resultado">
+
+    </h1>
 </body>
 
 </html>
