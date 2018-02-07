@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Simple calculator</title>
+    <script>
+        function sum(numeroA, numeroB) {
+            if (typeof (numeroA) !== 'number' && !isNaN(numeroA)) {
+                numeroA = parseInt(numeroA)
+            }
+
+            if (typeof (numeroB) !== 'number' && !isNaN(numeroB)) {
+                numeroB = parseInt(numeroB)
+            }
+
+            return numeroA + numeroB;
+        }
+        
+        window.onload = function () {
+            var pNumero = document.getElementById('primeiroNumero');
+            var sNumero = document.getElementById('segundoNumero');
+            var sumBtn = document.getElementById('sumButton');
+
+            sumBtn.addEventListener('click', function (){
+                alert(sum(pNumero.value, sNumero.value));
+            });
+        };
+    </script>
+</head>
+
+<body>
+    <div>
+        <label>
+            Primeiro número:
+            <input type="text" id="primeiroNumero" value="23" />
+        </label>
+    </div>
+    <div>
+        <label>
+            Segundo número:
+            <input type="text" id="segundoNumero" value="24" />
+        </label>
+    </div>
+    <div>
+        <button id="sumButton">Somar números</button>
+    </div>
+    <div id="resultado">
+
+    </div>
+</body>
+
+</html>
